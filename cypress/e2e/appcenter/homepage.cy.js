@@ -2,6 +2,8 @@ describe("appcenter homepage test suite", () => {
   const homepageUrl = "https://www.amazon.com/b2b/appcenter";
   const applistUrlAccountingManagement =
     "https://www.amazon.com/b2b/appcenter/apps?categories=accountManagement";
+  const awardcoAppDetailsUrl =
+    "https://www.amazon.com/b2b/appcenter/applicationdetails/amzn1.sp.solution.a19f122b-dd63-4ed5-a282-2aa0cb1a99db";
   beforeEach(() => {
     cy.visit(homepageUrl);
   });
@@ -23,8 +25,17 @@ describe("appcenter homepage test suite", () => {
     cy.url().should("eq", applistUrlAccountingManagement);
   });
 
-  it('Clicking category card takes you to the app list page for that category', () => {
-      cy.get(".bws-marketplace-homepage-category-card").contains("Accounting Management").click();
-      cy.url().should("eq", applistUrlAccountingManagement);
+  it("Clicking category card takes you to the app list page for that category", () => {
+    cy.get(".bws-marketplace-homepage-category-card")
+      .contains("Accounting Management")
+      .click();
+    cy.url().should("eq", applistUrlAccountingManagement);
+  });
+
+  it("Clicking app card takes you to the app details page for that app", () => {
+    cy.get('[data-testid="bws-marketplace-homepage-app-card-title"]')
+      .contains("Awardco")
+      .click();
+    cy.url().should("eq", awardcoAppDetailsUrl);
   });
 });
