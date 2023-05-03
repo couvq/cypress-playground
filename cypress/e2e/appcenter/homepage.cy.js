@@ -22,4 +22,9 @@ describe("appcenter homepage test suite", () => {
     ).click();
     cy.url().should("eq", applistUrlAccountingManagement);
   });
+
+  it('Clicking category card takes you to the app list page for that category', () => {
+      cy.get(".bws-marketplace-homepage-category-card").contains("Accounting Management").click();
+      cy.url().should("eq", applistUrlAccountingManagement);
+  });
 });
