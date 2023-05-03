@@ -6,6 +6,11 @@ describe("appcenter homepage test suite", () => {
     "https://www.amazon.com/b2b/appcenter/applicationdetails/amzn1.sp.solution.a19f122b-dd63-4ed5-a282-2aa0cb1a99db";
   beforeEach(() => {
     cy.visit(homepageUrl);
+    cy.injectAxe() // make sure axe is available on the page
+  });
+
+  it('homepage has no accessibility violations detected from axe automated tests', () => {
+      cy.checkA11y();
   });
 
   it("navigation works", () => {
